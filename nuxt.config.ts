@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
   ],
 
+  icon: {
+    serverBundle: {
+      collections: ['uil', 'mdi'], // <!--- this
+    },
+  },
+
   googleFonts: {
     families: {
       // List the fonts you want here
@@ -21,5 +27,28 @@ export default defineNuxtConfig({
     prefetch: true, // Preload fonts during the build
     preconnect: true, // Preconnect to Google's font servers
     display: 'swap', // Ensure text remains visible during font loading
+  },
+
+  runtimeConfig: {
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_KEY: process.env.SUPABASE_ANON_KEY,
+    },
+  },
+
+  app: {
+    head: {
+      title: 'Nuxt App',
+      meta: [
+        {
+          name: 'description',
+          content: 'Nuxt app with Supabase and Tailwind.',
+        },
+      ],
+
+      htmlAttrs: {
+        lang: 'en',
+      },
+    },
   },
 })
